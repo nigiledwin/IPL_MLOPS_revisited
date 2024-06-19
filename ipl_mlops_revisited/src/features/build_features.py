@@ -54,13 +54,21 @@ def clean_data(df):
 def feature_engineering(df):
 
     return(
-        df
+        df.assign
+        (total_score=
+                    df.groupby(['match_id','innings_id'])['runs'].transform('sum'),
+         batsman_total_runs=
+                    df.groupby(['match_id','batsman1_name'])['wkt_batsman_runs'].transform('sum'),
+         batsman_total_balls=
+                    df.groupby(['match_id','batsman1_name'])['wkt_batsman_balls'].transform('sum'),
+         )
+         
+
+        
     )
 
 
 df = load_data("data/raw/all_season_details.csv")
-if df is not None:
-    print(df.columns)
 df_clean=clean_data(df)
 df_fet_eng=feature_engineering(df_clean)
 save_cleaned_df(df_fet_eng,"data/raw/cleaned.csv")
