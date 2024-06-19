@@ -1,0 +1,7 @@
+stages:
+  build_features:
+    cmd: python src\features\build_features.py
+    deps:
+    - src\features\build_features.py
+    outs:
+    - data/raw/cleaned.csv

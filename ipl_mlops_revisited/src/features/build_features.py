@@ -69,6 +69,8 @@ def feature_engineering(df):
 
 
 df = load_data("data/raw/all_season_details.csv")
+if df is not None:
+    print(df.columns)
 df_clean=clean_data(df)
 df_fet_eng=feature_engineering(df_clean)
 save_cleaned_df(df_fet_eng,"data/raw/cleaned.csv")
