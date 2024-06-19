@@ -52,7 +52,10 @@ def clean_data(df):
               )
 
 def feature_engineering(df):
-    return df
+
+    return(
+        df
+    )
 
 
 df = load_data("data/raw/all_season_details.csv")
