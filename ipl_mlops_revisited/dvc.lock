@@ -5,10 +5,14 @@ stages:
     deps:
     - path: src\features\build_features.py
       hash: md5
-      md5: b8c4675b224b8a57dada810717a9d846
-      size: 2548
+      md5: 4473c62d14d951c5144711f676c7eda0
+      size: 3630
     outs:
-    - path: data/raw/cleaned.csv
+    - path: data/processed/test.csv
       hash: md5
-      md5: dce00ca0cceae05638b02a7b68d4dd73
-      size: 75453532
+      md5: ba9df15d9595559edb70525ab8404592
+      size: 1082472
+    - path: data/processed/train.csv
+      hash: md5
+      md5: cf3dcb49168680f9c6f7a59396eb4954
+      size: 4329649

@@ -4,4 +4,5 @@ stages:
     deps:
     - src\features\build_features.py
     outs:
-    - data/raw/cleaned.csv
+    - data/processed/train.csv
+    - data/processed/test.csv

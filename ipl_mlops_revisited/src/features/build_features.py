@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from sklearn.model_selection import train_test_split
 
 def load_data(path):
     # Check if the file exists
@@ -16,7 +17,7 @@ def load_data(path):
         print(f"Error loading data: {e}")
         return None
 
-def save_cleaned_df(df,path):
+def save_split_df(df,path):
     try:
         df.to_csv(path,index=False)
         print("File saved succesfully")
@@ -51,6 +52,14 @@ def clean_data(df):
                         )
               )
 
+def bowling_team(row):
+    match_teams=row['match_name'].split('v')
+    if row['current_innings']==match_teams[0]:
+        return match_teams[1]
+    else:
+        return match_teams[0]
+
+
 def feature_engineering(df):
 
     return(
@@ -61,16 +70,27 @@ def feature_engineering(df):
                     df.groupby(['match_id','batsman1_name'])['wkt_batsman_runs'].transform('sum'),
          batsman_total_balls=
                     df.groupby(['match_id','batsman1_name'])['wkt_batsman_balls'].transform('sum'),
-         )
+         cumulative_runs=
+                    df.groupby(['match_id','innings_id'])['runs'].transform('cumsum'),
+         rolling_back_30balls_runs=
+                    df.groupby(['match_id','innings_id'])['runs'].rolling(window=30,min_periods=1).sum().reset_index(level=[0,1],drop=True),
+         rolling_back_30balls_wkts=
+                    df.groupby(['match_id','innings_id'])['wicket_id'].rolling(window=30,min_periods=1).count().reset_index(level=[0,1],drop=True),
+         bowling_team=df.apply(bowling_team,axis=1)
+         ).rename(columns={'current_innings':'batting_team'})
+         [['total_score','batting_team','bowling_team','rolling_back_30balls_runs','rolling_back_30balls_wkts']]
          
 
         
     )
+ 
 
 
 df = load_data("data/raw/all_season_details.csv")
 if df is not None:
     print(df.columns)
 df_clean=clean_data(df)
-df_fet_eng=feature_engineering(df_clean)
-save_cleaned_df(df_fet_eng,"data/raw/cleaned.csv")
+df_fet_eng=feature_engineering(df_clean).iloc[30:,:]
+train_data,test_data=train_test_split(df_fet_eng,test_size=.2,random_state=22)
+save_split_df(train_data,"data/processed/train.csv")
+save_split_df(test_data,"data/processed/test.csv")
