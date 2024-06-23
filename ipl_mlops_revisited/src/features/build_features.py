@@ -90,7 +90,14 @@ df = load_data("data/raw/all_season_details.csv")
 if df is not None:
     print(df.columns)
 df_clean=clean_data(df)
-df_fet_eng=feature_engineering(df_clean).iloc[30:,:]
-train_data,test_data=train_test_split(df_fet_eng,test_size=.2,random_state=22)
-save_split_df(train_data,"data/processed/train.csv")
-save_split_df(test_data,"data/processed/test.csv")
+df_final=feature_engineering(df_clean).iloc[30:,:]
+save_split_df(df_final,"data/processed/df_final.csv")
+
+'''X=df_fet_eng.drop(['total_score'],axis=1)
+y=df_fet_eng['total_score']
+
+X_train,X_test,y_tain,y_test_data=train_test_split(X,y,test_size=.2,random_state=22)
+save_split_df(X_train,"data/processed/X_train.csv")
+save_split_df(X_test,"data/processed/X_test.csv")
+save_split_df(y_tain,"data/processed/y_train.csv")
+save_split_df(y_test_data,"data/processed/y_test.csv")'''
