@@ -26,16 +26,17 @@ stages:
       nfiles: 2
     - path: src/models/train_model.py
       hash: md5
-      md5: f051916e1134e80b159b1e1584a37408
-      size: 2572
+      md5: 3df84eb8a1bbd46230d2e237db237158
+      size: 2904
     params:
       params.yaml:
         train_model.learning_rate: 0.2
         train_model.max_depth: 20
+        train_model.model: xgboost
         train_model.n_estimators: 50
         train_model.test_size: 0.2
     outs:
-    - path: models/pipe_xgb.pkl
+    - path: models/pipe.pkl
       hash: md5
       md5: 146d307580968ccabb2ffb969b2ee54c
       size: 60867679

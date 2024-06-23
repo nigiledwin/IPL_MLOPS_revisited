@@ -19,5 +19,6 @@ stages:
     - train_model.n_estimators
     - train_model.max_depth
     - train_model.learning_rate
+    - train_model.model
     outs:
-    - models/pipe_xgb.pkl
+    - models/pipe.pkl

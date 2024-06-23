@@ -7,5 +7,6 @@
    n_estimators: 50
    max_depth: 20
    learning_rate: .2  
+   model: 'xgboost'
 
     
