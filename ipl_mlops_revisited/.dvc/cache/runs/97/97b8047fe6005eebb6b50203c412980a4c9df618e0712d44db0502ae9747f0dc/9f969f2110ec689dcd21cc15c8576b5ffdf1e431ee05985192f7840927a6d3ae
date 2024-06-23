@@ -1,0 +1,15 @@
+cmd: python src\features\build_features.py
+deps:
+- path: src\features\build_features.py
+  hash: md5
+  md5: c953462f54cf55393303f6cbd976f3a2
+  size: 3758
+params:
+  params.yaml:
+    build_features.drop_rows: 30
+    build_features.rolling_window: 30
+outs:
+- path: data/processed/df_final.csv
+  hash: md5
+  md5: adb00de10c9f30ac4154c5257fa29bc4
+  size: 6507823

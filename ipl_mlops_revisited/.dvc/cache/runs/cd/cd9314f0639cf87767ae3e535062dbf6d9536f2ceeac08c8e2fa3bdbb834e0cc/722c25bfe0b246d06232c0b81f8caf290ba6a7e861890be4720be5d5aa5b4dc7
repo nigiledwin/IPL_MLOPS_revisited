@@ -1,0 +1,22 @@
+cmd: python src/models/train_model.py
+deps:
+- path: data/processed
+  hash: md5
+  md5: 6c4c29c916155a080a94c7e66bc412c4.dir
+  size: 6507823
+  nfiles: 2
+- path: src/models/train_model.py
+  hash: md5
+  md5: f051916e1134e80b159b1e1584a37408
+  size: 2572
+params:
+  params.yaml:
+    train_model.learning_rate: 0.3
+    train_model.max_depth: 10
+    train_model.n_estimators: 10
+    train_model.test_size: 0.3
+outs:
+- path: models/pipe_xgb.pkl
+  hash: md5
+  md5: d12ce483ed338a8a3e8450f72fa616c1
+  size: 444717

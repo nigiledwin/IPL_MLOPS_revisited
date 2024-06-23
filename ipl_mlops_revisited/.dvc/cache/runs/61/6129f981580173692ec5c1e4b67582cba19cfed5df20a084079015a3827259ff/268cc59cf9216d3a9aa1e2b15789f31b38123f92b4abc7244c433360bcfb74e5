@@ -1,0 +1,11 @@
+cmd: python src\features\build_features.py
+deps:
+- path: src\features\build_features.py
+  hash: md5
+  md5: 51a23a501e72e860782d60d797b7de7b
+  size: 3904
+outs:
+- path: data/processed/df_final.csv
+  hash: md5
+  md5: adb00de10c9f30ac4154c5257fa29bc4
+  size: 6507823

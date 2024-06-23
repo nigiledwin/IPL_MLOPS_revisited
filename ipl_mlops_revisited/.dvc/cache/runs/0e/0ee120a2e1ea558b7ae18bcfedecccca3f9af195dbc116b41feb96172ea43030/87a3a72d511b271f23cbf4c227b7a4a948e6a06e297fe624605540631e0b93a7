@@ -1,0 +1,16 @@
+cmd: python src/models/train_model.py
+deps:
+- path: data/processed
+  hash: md5
+  md5: 6c4c29c916155a080a94c7e66bc412c4.dir
+  size: 6507823
+  nfiles: 2
+- path: src/models/train_model.py
+  hash: md5
+  md5: 53b4d3b3af48afba888250577e46d0e8
+  size: 2106
+outs:
+- path: models/pipe_xgb.pkl
+  hash: md5
+  md5: 8ff5d2fbb0b87b4d0b01772d800ef457
+  size: 467620
