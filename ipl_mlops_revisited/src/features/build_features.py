@@ -74,7 +74,7 @@ def feature_engineering(df):
                     df.groupby(['match_id','batsman1_name'])['wkt_batsman_runs'].transform('sum'),
          batsman_total_balls=
                     df.groupby(['match_id','batsman1_name'])['wkt_batsman_balls'].transform('sum'),
-         cumulative_runs=
+         current_runs=
                     df.groupby(['match_id','innings_id'])['runs'].transform('cumsum'),
          rolling_back_30balls_runs=
                     df.groupby(['match_id','innings_id'])['runs'].rolling(window=rolling_window,min_periods=1).sum().reset_index(level=[0,1],drop=True),
@@ -82,7 +82,7 @@ def feature_engineering(df):
                     df.groupby(['match_id','innings_id'])['wicket_id'].rolling(window=rolling_window,min_periods=1).count().reset_index(level=[0,1],drop=True),
          bowling_team=df.apply(bowling_team,axis=1)
          ).rename(columns={'current_innings':'batting_team'})
-         [['total_score','batting_team','bowling_team','over', 'ball','rolling_back_30balls_runs','rolling_back_30balls_wkts']]
+         [['total_score','batting_team','bowling_team','over', 'ball','current_runs','rolling_back_30balls_runs','rolling_back_30balls_wkts']]
          
 
         
